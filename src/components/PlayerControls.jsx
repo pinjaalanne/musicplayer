@@ -1,22 +1,23 @@
 'use client';
 
-import { PlayFill, SkipEndFill, SkipStartFill } from "react-bootstrap-icons";
+import { PauseFill, PlayFill, SkipEndFill, SkipStartFill } from "react-bootstrap-icons";
+import { useMusicPlayer } from "../hooks/useMusicPlayer";
 
 const PlayerControls = () => {
-    //TODO: Add useMusicPlayer
+    const music = useMusicPlayer();
 
     return (
         <div>
             <div>
-                <p>HERE WILL BE CURRENT TRACK NAME</p>
+                <p>Track Playing: {music.currentTrackName}</p>
             </div>
-            <button>
+            <button onClick={() => music.playPreviousTrack()}>
                 <SkipStartFill />
             </button>
-            <button>
-                <PlayFill />
+            <button onClick={() => music.togglePlay()}>
+                {music.isPlaying ? <PauseFill /> : <PlayFill />}
             </button>
-            <button>
+            <button onClick={() => music.playNextTrack()}>
                 <SkipEndFill />
             </button>
         </div>
